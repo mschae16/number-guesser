@@ -1,15 +1,16 @@
 // Global Variables
+
 var guessRange = document.querySelectorAll('.range');
-var minInput = parseInt(document.querySelector('#min').value);
-var maxInput = parseInt(document.querySelector('#max').value);
+var userGuess = document.getElementById('user-guess');
+var guessBtn = document.getElementById('guess-btn');
+var clearBtn = document.getElementById('clear-btn');
+var resetBtn = document.getElementById('reset-btn');
+var recentGuess = document.getElementById('recent-guess');
+var recentGuessValue = document.getElementById('recent-guess-value');
+var lowHigh = document.getElementById('low-high');
+var minInput = parseInt(document.getElementById('min').value);
+var maxInput = parseInt(document.getElementById('max').value);
 var randomNumber = Math.floor(Math.random() * (Math.floor(maxInput) - Math.ceil(minInput))) + minInput;
-var userGuess = document.querySelector('#user-guess');
-var guessBtn = document.querySelector('#guess-btn');
-var clearBtn = document.querySelector('#clear-btn');
-var resetBtn = document.querySelector('#reset-btn');
-var recentGuess = document.querySelector('#recent-guess');
-var recentGuessValue = document.querySelector('#recent-guess-value');
-var lowHigh = document.querySelector('#low-high');
 
 // Events
 
@@ -24,8 +25,8 @@ for(i = 0; i < guessRange.length; i++) {
 
   guessRange[i].addEventListener('input', function() {
     resetBtn.disabled = false;
-    minInput = parseInt(document.querySelector('#min').value);
-    maxInput = parseInt(document.querySelector('#max').value);
+    minInput = parseInt(document.getElementById('min').value);
+    maxInput = parseInt(document.getElementById('max').value);
     randomNumber = Math.floor(Math.random() * (Math.floor(maxInput) - Math.ceil(minInput))) + minInput;
   });
 }
@@ -89,7 +90,7 @@ function resetNumberGuesser() {
   guessBtn.disabled = true;
   clearBtn.disabled = true;
   resetBtn.disabled = true;
-  document.querySelector('#min').value = '';
-  document.querySelector('#max').value = '';
+  document.getElementById('min').value = '';
+  document.getElementById('max').value = '';
   clearUserGuess();
 }
