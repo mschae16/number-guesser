@@ -14,6 +14,6 @@ Upon initial page load, the site displays several input fields for setting a min
 
 ## Built With
 
-* [HTML]() - The structure of the page
-* [CSS]() - The layout and design of the page
-* [jQuery]() - The behavior and interactive logic of the page
+* [HTML](https://github.com/mschae16/number-guesser/blob/master/index.html) - The structure of the page
+* [CSS](https://github.com/mschae16/number-guesser/blob/master/style.css) - The layout and design of the page
+* [JAVASCRIPT](https://github.com/mschae16/number-guesser/blob/master/script.js) - The behavior and interactive logic of the page
