@@ -1,49 +1,31 @@
-// Global Variables
-
-var guessRange = document.querySelectorAll('.range');
-var userGuess = document.getElementById('user-guess');
-var guessBtn = document.getElementById('guess-btn');
-var clearBtn = document.getElementById('clear-btn');
-var resetBtn = document.getElementById('reset-btn');
-var recentGuess = document.getElementById('recent-guess');
-var recentGuessValue = document.getElementById('recent-guess-value');
-var lowHigh = document.getElementById('low-high');
-var minInput = parseInt(document.getElementById('min').value);
-var maxInput = parseInt(document.getElementById('max').value);
+var minInput;
+var maxInput;
 var randomNumber = Math.floor(Math.random() * (Math.floor(maxInput) - Math.ceil(minInput))) + minInput;
 
-// Events
+document.getElementById('guess-btn').addEventListener('click', manageGuess);
+document.getElementById('clear-btn').addEventListener('click', clearUserGuess);
+document.getElementById('user-guess').addEventListener('input', toggleBtns);
+document.getElementById('reset-btn').addEventListener('click', resetNumberGuesser);
 
-guessBtn.addEventListener('click', manageGuess);
-clearBtn.addEventListener('click', clearUserGuess);
-userGuess.addEventListener('input', toggleBtns);
-resetBtn.addEventListener('click', resetNumberGuesser);
+for(i = 0; i < document.querySelectorAll('.range').length; i++) {
 
-// For Loop to engage min/max inputs
-
-for(i = 0; i < guessRange.length; i++) {
-
-  guessRange[i].addEventListener('input', function() {
-    resetBtn.disabled = false;
+  document.querySelectorAll('.range')[i].addEventListener('input', function() {
+    document.getElementById('reset-btn').disabled = false;
     minInput = parseInt(document.getElementById('min').value);
     maxInput = parseInt(document.getElementById('max').value);
     randomNumber = Math.floor(Math.random() * (Math.floor(maxInput) - Math.ceil(minInput))) + minInput;
   });
 }
 
-// Umbrella Function
-
 function manageGuess() {
   compareNumbers();
   clearUserGuess();
   toggleBtns();
-  resetBtn.disabled = false;
+  document.getElementById('reset-btn').disabled = false;
 }
 
-// Secondary Functions
-
 function compareNumbers() {
-  var userGuessValue = parseInt(userGuess.value);
+  var userGuessValue = parseInt(document.getElementById('user-guess').value);
 
   if((userGuessValue < minInput) || (userGuessValue > maxInput)) {
       alert('Stay within range, dude!');
@@ -52,45 +34,43 @@ function compareNumbers() {
       alert('Your hair looks great today!  ...oh, and you need to enter a number.');
 
   } else if(userGuessValue === randomNumber) {
-      recentGuess.innerText = 'BOOM!';
-      recentGuessValue.innerText = randomNumber;
-      lowHigh.innerText = '';
+      document.getElementById('recent-guess').innerText = 'BOOM!';
+      document.getElementById('recent-guess-value').innerText = randomNumber;
+      document.getElementById('low-high').innerText = '';
 
   } else if(userGuessValue < randomNumber) {
-      recentGuess.innerText = 'Your last guess was';
-      recentGuessValue.innerText = userGuessValue;
-      lowHigh.innerText = 'That is too low';
+      document.getElementById('recent-guess').innerText = 'Your last guess was';
+      document.getElementById('recent-guess-value').innerText = userGuessValue;
+      document.getElementById('low-high').innerText = 'That is too low';
 
   } else if(userGuessValue > randomNumber) {
-      recentGuess.innerText = 'Your last guess was';
-      recentGuessValue.innerText = userGuessValue;
-      lowHigh.innerText = 'That is too high';
+      document.getElementById('recent-guess').innerText = 'Your last guess was';
+      document.getElementById('recent-guess-value').innerText = userGuessValue;
+      document.getElementById('low-high').innerText = 'That is too high';
   }
 }
 
 function clearUserGuess() {
-  userGuess.value = '';
+  document.getElementById('user-guess').value = '';
   toggleBtns();
 }
 
 function toggleBtns() {
-  if(userGuess.value === '') {
-      clearBtn.disabled = true;
-      guessBtn.disabled = true;
+  if(document.getElementById('user-guess').value === '') {
+      document.getElementById('clear-btn').disabled = true;
+      document.getElementById('guess-btn').disabled = true;
   } else {
-      clearBtn.disabled = false;
-      guessBtn.disabled = false;
+      document.getElementById('clear-btn').disabled = false;
+      document.getElementById('guess-btn').disabled = false;
   }
 }
 
 function resetNumberGuesser() {
-  recentGuess.innerText = 'Set your range';
-  recentGuessValue.innerText = '#';
-  lowHigh.innerText = 'Guess a number';
-  guessBtn.disabled = true;
-  clearBtn.disabled = true;
-  resetBtn.disabled = true;
+  document.getElementById('recent-guess').innerText = 'Set your range';
+  document.getElementById('recent-guess-value').innerText = '#';
+  document.getElementById('low-high').innerText = 'Guess a number';
   document.getElementById('min').value = '';
   document.getElementById('max').value = '';
+  document.getElementById('reset-btn').disabled = true;
   clearUserGuess();
 }
